@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>List</title>
+    </head>
+    <body>
+
+        <h2>List</h2>
+
+        <button onclick="window.location.href = '/iris/create/'">Novo Registro</button>
+        <button onclick="window.location.href = '/iris/dashboard/'">Dashboard</button>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Sepal Width</th>
+                    <th>Sepal Length</th>
+                    <th>Petal Width</th>
+                    <th>Petal Length</th>
+                    <th>Specie</th>
+                    <th>Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in data_set %}
+                <tr>
+                    <td>{{ x.id }}</td>
+                    <td>{{ x.sepal_width }}</td>
+                    <td>{{ x.sepal_length }}</td>
+                    <td>{{ x.petal_width }}</td>
+                    <td>{{ x.petal_length }}</td>
+                    <td>{{ x.specie }}</td>
+                    <td>
+                        <button onclick="window.location.href = '/iris/{{ x.id }}/'">Editar</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

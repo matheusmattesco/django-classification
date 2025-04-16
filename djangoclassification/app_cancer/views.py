@@ -1,12 +1,18 @@
 from django.views import View
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import traceback
-from django.shortcuts import redirect
 import pickle
 import pandas as pd
 import os
 from django.conf import settings
+from app_cancer.models import LungCancerModel
 
+class LungCancerView(View):
+    def get(self, request):
+        context = {
+            'data_set': LungCancerModel.objects.all()
+        }
+        return render(request, 'app_cancer/templates/index.html', context=context)
 
 def load_model():
     path = os.path.join(settings.BASE_DIR, 'ml', 'model.pkl')
@@ -40,7 +46,6 @@ def predict_cancer(request):
     resultado = None
     if request.method == 'POST':
         try:
-            # Coleta os 17 campos do formulário
             data = [
                 int(request.POST.get('GENDER')),
                 int(request.POST.get('AGE')),
@@ -49,24 +54,23 @@ def predict_cancer(request):
                 int(request.POST.get('MENTAL_STRESS')),
                 int(request.POST.get('EXPOSURE_TO_POLLUTION')),
                 int(request.POST.get('LONG_TERM_ILLNESS')),
-                int(request.POST.get('ENERGY_LEVEL')),
+                float(request.POST.get('ENERGY_LEVEL')),
                 int(request.POST.get('IMMUNE_WEAKNESS')),
                 int(request.POST.get('BREATHING_ISSUE')),
                 int(request.POST.get('ALCOHOL_CONSUMPTION')),
                 int(request.POST.get('THROAT_DISCOMFORT')),
-                int(request.POST.get('OXYGEN_SATURATION')),
+                float(request.POST.get('OXYGEN_SATURATION')),
                 int(request.POST.get('CHEST_TIGHTNESS')),
                 int(request.POST.get('FAMILY_HISTORY')),
                 int(request.POST.get('SMOKING_FAMILY_HISTORY')),
                 int(request.POST.get('STRESS_IMMUNE')),
             ]
-            # Faz a previsão com o modelo
+
             prediction = model.predict([data])[0]
             resultado = 'Com câncer' if prediction == 1 else 'Sem câncer'
         except Exception as e:
             resultado = f'Erro na previsão: {e}'
     
-    # Passa os dados do DataFrame para o template
     return render(request, './forms.html', {
         'resultado': resultado,
         'form_data': novo_dado

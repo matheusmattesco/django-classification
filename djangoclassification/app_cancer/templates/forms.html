@@ -8,60 +8,84 @@
 <body>
     <form method="post">
         {% csrf_token %}
-        <label>Gênero (0=F, 1=M): 
-            <input type="number" name="GENDER" min="0" max="1">
-        </label><br>
-        <label>Idade: 
-            <input type="number" name="AGE">
-        </label><br>
-        <label>Fuma? (0=Não, 1=Sim): 
-            <input type="number" name="SMOKING" min="0" max="1">
-        </label><br>
-        <label>Descoloração dos dedos? (0=Não, 1=Sim): 
-            <input type="number" name="FINGER_DISCOLORATION" min="0" max="1">
-        </label><br>
-        <label>Estresse mental? (0=Não, 1=Sim): 
-            <input type="number" name="MENTAL_STRESS" min="0" max="1">
-        </label><br>
-        <label>Exposição à poluição? (0=Não, 1=Sim): 
-            <input type="number" name="EXPOSURE_TO_POLLUTION" min="0" max="1">
-        </label><br>
-        <label>Doença de longo prazo? (0=Não, 1=Sim): 
-            <input type="number" name="LONG_TERM_ILLNESS" min="0" max="1">
-        </label><br>
-        <label>Nível de energia baixo? (0=Não, 1=Sim): 
-            <input type="number" name="ENERGY_LEVEL" min="0" max="1">
-        </label><br>
-        <label>Fraqueza imunológica? (0=Não, 1=Sim): 
-            <input type="number" name="IMMUNE_WEAKNESS" min="0" max="1">
-        </label><br>
-        <label>Dificuldade para respirar? (0=Não, 1=Sim): 
-            <input type="number" name="BREATHING_ISSUE" min="0" max="1">
-        </label><br>
-        <label>Consumo de álcool? (0=Não, 1=Sim): 
-            <input type="number" name="ALCOHOL_CONSUMPTION" min="0" max="1">
-        </label><br>
-        <label>Desconforto na garganta? (0=Não, 1=Sim): 
-            <input type="number" name="THROAT_DISCOMFORT" min="0" max="1">
-        </label><br>
-        <label>Saturação de oxigênio baixa? (0=Não, 1=Sim): 
-            <input type="number" name="OXYGEN_SATURATION" min="0" max="1">
-        </label><br>
-        <label>Aperto no peito? (0=Não, 1=Sim): 
-            <input type="number" name="CHEST_TIGHTNESS" min="0" max="1">
-        </label><br>
-        <label>Histórico familiar de câncer? (0=Não, 1=Sim): 
-            <input type="number" name="FAMILY_HISTORY" min="0" max="1">
-        </label><br>
-        <label>Histórico familiar de tabagismo? (0=Não, 1=Sim): 
-            <input type="number" name="SMOKING_FAMILY_HISTORY" min="0" max="1">
-        </label><br>
-        <label>Estresse imunológico? (0=Não, 1=Sim): 
-            <input type="number" name="STRESS_IMMUNE" min="0" max="1">
-        </label><br>
-        <button type="submit">Verificar</button>
+        <table>
+            <tr>
+                <td><label for="GENDER">Gênero (0=F, 1=M):</label></td>
+                <td><input type="number" name="GENDER" id="GENDER" min="0" max="1"></td>
+            </tr>
+            <tr>
+                <td><label for="AGE">Idade:</label></td>
+                <td><input type="number" name="AGE" id="AGE"></td>
+            </tr>
+            <tr>
+                <td><label for="SMOKING">Fuma? (0=Não, 1=Sim):</label></td>
+                <td><input type="number" name="SMOKING" id="SMOKING" min="0" max="1"></td>
+            </tr>
+            <tr>
+                <td><label for="FINGER_DISCOLORATION">Descoloração dos dedos? (0=Não, 1=Sim):</label></td>
+                <td><input type="number" name="FINGER_DISCOLORATION" id="FINGER_DISCOLORATION" min="0" max="1"></td>
+            </tr>
+            <tr>
+                <td><label for="MENTAL_STRESS">Estresse mental? (0=Não, 1=Sim):</label></td>
+                <td><input type="number" name="MENTAL_STRESS" id="MENTAL_STRESS" min="0" max="1"></td>
+            </tr>
+            <tr>
+                <td><label for="EXPOSURE_TO_POLLUTION">Exposição à poluição? (0=Não, 1=Sim):</label></td>
+                <td><input type="number" name="EXPOSURE_TO_POLLUTION" id="EXPOSURE_TO_POLLUTION" min="0" max="1"></td>
+            </tr>
+            <tr>
+                <td><label for="LONG_TERM_ILLNESS">Doença de longo prazo? (0=Não, 1=Sim):</label></td>
+                <td><input type="number" name="LONG_TERM_ILLNESS" id="LONG_TERM_ILLNESS" min="0" max="1"></td>
+            </tr>
+            <tr>
+                <td><label for="ENERGY_LEVEL">Nível de energia baixo? (0 a 100):</label></td>
+                <td><input type="number" name="ENERGY_LEVEL" id="ENERGY_LEVEL"></td>
+            </tr>
+            <tr>
+                <td><label for="IMMUNE_WEAKNESS">Fraqueza imunológica? (0=Não, 1=Sim):</label></td>
+                <td><input type="number" name="IMMUNE_WEAKNESS" id="IMMUNE_WEAKNESS" min="0" max="1"></td>
+            </tr>
+            <tr>
+                <td><label for="BREATHING_ISSUE">Dificuldade para respirar? (0=Não, 1=Sim):</label></td>
+                <td><input type="number" name="BREATHING_ISSUE" id="BREATHING_ISSUE" min="0" max="1"></td>
+            </tr>
+            <tr>
+                <td><label for="ALCOHOL_CONSUMPTION">Consumo de álcool? (0=Não, 1=Sim):</label></td>
+                <td><input type="number" name="ALCOHOL_CONSUMPTION" id="ALCOHOL_CONSUMPTION" min="0" max="1"></td>
+            </tr>
+            <tr>
+                <td><label for="THROAT_DISCOMFORT">Desconforto na garganta? (0=Não, 1=Sim):</label></td>
+                <td><input type="number" name="THROAT_DISCOMFORT" id="THROAT_DISCOMFORT" min="0" max="1"></td>
+            </tr>
+            <tr>
+                <td><label for="OXYGEN_SATURATION">Saturação de oxigênio baixa? (0 a 100):</label></td>
+                <td><input type="number" name="OXYGEN_SATURATION" id="OXYGEN_SATURATION"></td>
+            </tr>
+            <tr>
+                <td><label for="CHEST_TIGHTNESS">Aperto no peito? (0=Não, 1=Sim):</label></td>
+                <td><input type="number" name="CHEST_TIGHTNESS" id="CHEST_TIGHTNESS" min="0" max="1"></td>
+            </tr>
+            <tr>
+                <td><label for="FAMILY_HISTORY">Histórico familiar de câncer? (0=Não, 1=Sim):</label></td>
+                <td><input type="number" name="FAMILY_HISTORY" id="FAMILY_HISTORY" min="0" max="1"></td>
+            </tr>
+            <tr>
+                <td><label for="SMOKING_FAMILY_HISTORY">Histórico familiar de tabagismo? (0=Não, 1=Sim):</label></td>
+                <td><input type="number" name="SMOKING_FAMILY_HISTORY" id="SMOKING_FAMILY_HISTORY" min="0" max="1"></td>
+            </tr>
+            <tr>
+                <td><label for="STRESS_IMMUNE">Estresse imunológico? (0=Não, 1=Sim):</label></td>
+                <td><input type="number" name="STRESS_IMMUNE" id="STRESS_IMMUNE" min="0" max="1"></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <button type="submit">Verificar</button>
+                </td>
+            </tr>
+        </table>
     </form>
     
+
     {% if resultado %}
         <h2>Resultado: {{ resultado }}</h2>
     {% endif %}

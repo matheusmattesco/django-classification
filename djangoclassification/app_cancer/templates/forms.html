@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Previsão</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <label>Gênero (0=F, 1=M): 
+            <input type="number" name="GENDER" min="0" max="1">
+        </label><br>
+        <label>Idade: 
+            <input type="number" name="AGE">
+        </label><br>
+        <label>Fuma? (0=Não, 1=Sim): 
+            <input type="number" name="SMOKING" min="0" max="1">
+        </label><br>
+        <label>Descoloração dos dedos? (0=Não, 1=Sim): 
+            <input type="number" name="FINGER_DISCOLORATION" min="0" max="1">
+        </label><br>
+        <label>Estresse mental? (0=Não, 1=Sim): 
+            <input type="number" name="MENTAL_STRESS" min="0" max="1">
+        </label><br>
+        <label>Exposição à poluição? (0=Não, 1=Sim): 
+            <input type="number" name="EXPOSURE_TO_POLLUTION" min="0" max="1">
+        </label><br>
+        <label>Doença de longo prazo? (0=Não, 1=Sim): 
+            <input type="number" name="LONG_TERM_ILLNESS" min="0" max="1">
+        </label><br>
+        <label>Nível de energia baixo? (0=Não, 1=Sim): 
+            <input type="number" name="ENERGY_LEVEL" min="0" max="1">
+        </label><br>
+        <label>Fraqueza imunológica? (0=Não, 1=Sim): 
+            <input type="number" name="IMMUNE_WEAKNESS" min="0" max="1">
+        </label><br>
+        <label>Dificuldade para respirar? (0=Não, 1=Sim): 
+            <input type="number" name="BREATHING_ISSUE" min="0" max="1">
+        </label><br>
+        <label>Consumo de álcool? (0=Não, 1=Sim): 
+            <input type="number" name="ALCOHOL_CONSUMPTION" min="0" max="1">
+        </label><br>
+        <label>Desconforto na garganta? (0=Não, 1=Sim): 
+            <input type="number" name="THROAT_DISCOMFORT" min="0" max="1">
+        </label><br>
+        <label>Saturação de oxigênio baixa? (0=Não, 1=Sim): 
+            <input type="number" name="OXYGEN_SATURATION" min="0" max="1">
+        </label><br>
+        <label>Aperto no peito? (0=Não, 1=Sim): 
+            <input type="number" name="CHEST_TIGHTNESS" min="0" max="1">
+        </label><br>
+        <label>Histórico familiar de câncer? (0=Não, 1=Sim): 
+            <input type="number" name="FAMILY_HISTORY" min="0" max="1">
+        </label><br>
+        <label>Histórico familiar de tabagismo? (0=Não, 1=Sim): 
+            <input type="number" name="SMOKING_FAMILY_HISTORY" min="0" max="1">
+        </label><br>
+        <label>Estresse imunológico? (0=Não, 1=Sim): 
+            <input type="number" name="STRESS_IMMUNE" min="0" max="1">
+        </label><br>
+        <button type="submit">Verificar</button>
+    </form>
+    
+    {% if resultado %}
+        <h2>Resultado: {{ resultado }}</h2>
+    {% endif %}
+</body>
+</html>

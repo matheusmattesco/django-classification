@@ -2,8 +2,21 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 import pickle
+import sqlite3
 
 df = pd.read_csv("./ml/Lung Cancer Dataset.csv")
+
+# Connect to SQLite database
+conn = sqlite3.connect('./db.sqlite3')
+cursor = conn.cursor()
+
+
+# Insert data into the LungCancer table
+df.to_sql('LungCancer', conn, if_exists='replace', index=False)
+
+# Commit and close the connection
+conn.commit()
+conn.close()
 
 df['GENDER'] = df['GENDER'].map({'M': 1, 'F': 0})
 X = df.drop('PULMONARY_DISEASE', axis=1)

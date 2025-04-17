@@ -18,6 +18,7 @@ class LungCancer(models.Model):
     family_history = models.IntegerField(choices=[(0, 'Não'), (1, 'Sim')], null=True, blank=True)
     smoking_family_history = models.IntegerField(choices=[(0, 'Não'), (1, 'Sim')], null=True, blank=True)
     stress_immune = models.IntegerField(choices=[(0, 'Não'), (1, 'Sim')], null=True, blank=True)
-
+    resultado = models.CharField(max_length=20, null=True, blank=True)
+            
     def __str__(self):
         return f'Paciente {self.id} - Idade: {self.age} - Gênero: {self.gender}'

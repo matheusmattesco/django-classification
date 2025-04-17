@@ -6,8 +6,8 @@
     <title>Formulário de Previsão</title>
 </head>
 <body>
+    <h2>Predição de Câncer de Pulmão</h2>
     <form method="post">
-        {% csrf_token %}
         <table>
             <tr>
                 <td><label for="gender">Gênero (0=F, 1=M):</label></td>
@@ -85,9 +85,11 @@
         </table>
     </form>
     
+    <button onclick="window.location.href = '{% url 'list' %}'">Voltar</button>
 
     {% if resultado %}
         <h2>Resultado: {{ resultado }}</h2>
     {% endif %}
+
 </body>
 </html>

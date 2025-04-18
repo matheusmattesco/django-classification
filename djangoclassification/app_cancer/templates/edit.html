@@ -1,107 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Formulário de Previsão</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .form-container {
+            width: 60%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 16px;
+            color: #555;
+        }
+
+        input[type="number"], input[type="radio"] {
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+            font-size: 16px;
+            color: #333;
+            text-decoration: none;
+            padding: 10px;
+            background-color: #ccc;
+            border-radius: 4px;
+        }
+
+        .back-btn:hover {
+            background-color: #bbb;
+        }
+    </style>
 </head>
 <body>
-    <h2>Editar</h2>
-    
-    {% csrf_token %}
-
-    <form method="post" action="{% url 'edit' %}">
-        {% csrf_token %}
-        <input type="hidden" name="id" value="{{ instance.id }}">
-    
-        Idade: <input type="number" name="age" value="{{ instance.age }}"><br>
-    
-        Gênero:
-        <select name="gender">
-            <option value="0" {% if instance.gender == 0 %}selected{% endif %}>Feminino</option>
-            <option value="1" {% if instance.gender == 1 %}selected{% endif %}>Masculino</option>
-        </select><br>
-    
-        Fuma:
-        <select name="smoking">
-            <option value="0" {% if instance.smoking == 0 %}selected{% endif %}>Não</option>
-            <option value="1" {% if instance.smoking == 1 %}selected{% endif %}>Sim</option>
-        </select><br>
-    
-        Dedos descoloridos:
-        <select name="finger_discoloration">
-            <option value="0" {% if instance.finger_discoloration == 0 %}selected{% endif %}>Não</option>
-            <option value="1" {% if instance.finger_discoloration == 1 %}selected{% endif %}>Sim</option>
-        </select><br>
-    
-        Estresse mental:
-        <select name="mental_stress">
-            <option value="0" {% if instance.mental_stress == 0 %}selected{% endif %}>Não</option>
-            <option value="1" {% if instance.mental_stress == 1 %}selected{% endif %}>Sim</option>
-        </select><br>
-    
-        Exposição à poluição:
-        <select name="exposure_to_pollution">
-            <option value="0" {% if instance.exposure_to_pollution == 0 %}selected{% endif %}>Não</option>
-            <option value="1" {% if instance.exposure_to_pollution == 1 %}selected{% endif %}>Sim</option>
-        </select><br>
-    
-        Doença de longo prazo:
-        <select name="long_term_illness">
-            <option value="0" {% if instance.long_term_illness == 0 %}selected{% endif %}>Não</option>
-            <option value="1" {% if instance.long_term_illness == 1 %}selected{% endif %}>Sim</option>
-        </select><br>
-    
-        Nível de energia: <input type="number" step="0.01" name="energy_level" value="{{ instance.energy_level }}"><br>
-    
-        Fraqueza imunológica:
-        <select name="immune_weakness">
-            <option value="0" {% if instance.immune_weakness == 0 %}selected{% endif %}>Não</option>
-            <option value="1" {% if instance.immune_weakness == 1 %}selected{% endif %}>Sim</option>
-        </select><br>
-    
-        Problemas respiratórios:
-        <select name="breathing_issue">
-            <option value="0" {% if instance.breathing_issue == 0 %}selected{% endif %}>Não</option>
-            <option value="1" {% if instance.breathing_issue == 1 %}selected{% endif %}>Sim</option>
-        </select><br>
-    
-        Consumo de álcool:
-        <select name="alcohol_consumption">
-            <option value="0" {% if instance.alcohol_consumption == 0 %}selected{% endif %}>Não</option>
-            <option value="1" {% if instance.alcohol_consumption == 1 %}selected{% endif %}>Sim</option>
-        </select><br>
-    
-        Desconforto na garganta: <input type="text" name="throat_discomfort" value="{{ instance.throat_discomfort }}"><br>
-    
-        Saturação de oxigênio: <input type="number" step="0.01" name="oxygen_saturation" value="{{ instance.oxygen_saturation }}"><br>
-    
-        Aperto no peito:
-        <select name="chest_tightness">
-            <option value="0" {% if instance.chest_tightness == 0 %}selected{% endif %}>Não</option>
-            <option value="1" {% if instance.chest_tightness == 1 %}selected{% endif %}>Sim</option>
-        </select><br>
-    
-        Histórico familiar:
-        <select name="family_history">
-            <option value="0" {% if instance.family_history == 0 %}selected{% endif %}>Não</option>
-            <option value="1" {% if instance.family_history == 1 %}selected{% endif %}>Sim</option>
-        </select><br>
-    
-        Histórico de tabagismo na família:
-        <select name="smoking_family_history">
-            <option value="0" {% if instance.smoking_family_history == 0 %}selected{% endif %}>Não</option>
-            <option value="1" {% if instance.smoking_family_history == 1 %}selected{% endif %}>Sim</option>
-        </select><br>
-    
-        Estresse imunológico:
-        <select name="stress_immune">
-            <option value="0" {% if instance.stress_immune == 0 %}selected{% endif %}>Não</option>
-            <option value="1" {% if instance.stress_immune == 1 %}selected{% endif %}>Sim</option>
-        </select><br>
-    
-        <button type="submit">Salvar</button>
-    </form>
-    
+    <h2>Predição de Câncer de Pulmão</h2>
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <tr>
+                        <td><label for="id">Id:</label></td>
+                        <td><input type="number" name="id" id="id" value="{{ data.id }}" required readonly></td>
+                    </tr>
+                    <td><label for="gender">Gênero:</label></td>
+                    <td>
+                        <input type="radio" name="gender" value="0" id="gender-f" {% if data.gender == 0 %}checked{% endif %} required><label for="gender-f">Feminino</label>
+                        <input type="radio" name="gender" value="1" id="gender-m" {% if data.gender == 1 %}checked{% endif %}><label for="gender-m">Masculino</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="age">Idade:</label></td>
+                    <td><input type="number" name="age" id="age" value="{{ data.age }}" required></td>
+                </tr>
+                <tr>
+                    <td><label for="smoking">Fuma?</label></td>
+                    <td>
+                        <input type="radio" name="smoking" value="0" id="smoking-no" {% if data.smoking == 0 %}checked{% endif %} required><label for="smoking-no">Não</label>
+                        <input type="radio" name="smoking" value="1" id="smoking-yes" {% if data.smoking == 1 %}checked{% endif %}><label for="smoking-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="finger_discoloration">Descoloração dos dedos?</label></td>
+                    <td>
+                        <input type="radio" name="finger_discoloration" value="0" id="finger_discoloration-no" {% if data.finger_discoloration == 0 %}checked{% endif %} required><label for="finger_discoloration-no">Não</label>
+                        <input type="radio" name="finger_discoloration" value="1" id="finger_discoloration-yes" {% if data.finger_discoloration == 1 %}checked{% endif %}><label for="finger_discoloration-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="mental_stress">Estresse mental?</label></td>
+                    <td>
+                        <input type="radio" name="mental_stress" value="0" id="mental_stress-no" {% if data.mental_stress == 0 %}checked{% endif %} required><label for="mental_stress-no">Não</label>
+                        <input type="radio" name="mental_stress" value="1" id="mental_stress-yes" {% if data.mental_stress == 1 %}checked{% endif %}><label for="mental_stress-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="exposure_to_pollution">Exposição à poluição?</label></td>
+                    <td>
+                        <input type="radio" name="exposure_to_pollution" value="0" id="exposure_to_pollution-no" {% if data.exposure_to_pollution == 0 %}checked{% endif %} required><label for="exposure_to_pollution-no">Não</label>
+                        <input type="radio" name="exposure_to_pollution" value="1" id="exposure_to_pollution-yes" {% if data.exposure_to_pollution == 1 %}checked{% endif %}><label for="exposure_to_pollution-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="long_term_illness">Doença de longo prazo?</label></td>
+                    <td>
+                        <input type="radio" name="long_term_illness" value="0" id="long_term_illness-no" {% if data.long_term_illness == 0 %}checked{% endif %} required><label for="long_term_illness-no">Não</label>
+                        <input type="radio" name="long_term_illness" value="1" id="long_term_illness-yes" {% if data.long_term_illness == 1 %}checked{% endif %}><label for="long_term_illness-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="energy_level">Nível de energia baixo (0 a 100):</label></td>
+                    <td><input type="number" name="energy_level" id="energy_level" value="{{ data.energy_level }}" required></td>
+                </tr>
+                <tr>
+                    <td><label for="immune_weakness">Fraqueza imunológica?</label></td>
+                    <td>
+                        <input type="radio" name="immune_weakness" value="0" id="immune_weakness-no" {% if data.immune_weakness == 0 %}checked{% endif %} required><label for="immune_weakness-no">Não</label>
+                        <input type="radio" name="immune_weakness" value="1" id="immune_weakness-yes" {% if data.immune_weakness == 1 %}checked{% endif %}><label for="immune_weakness-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="breathing_issue">Dificuldade para respirar?</label></td>
+                    <td>
+                        <input type="radio" name="breathing_issue" value="0" id="breathing_issue-no" {% if data.breathing_issue == 0 %}checked{% endif %} required><label for="breathing_issue-no">Não</label>
+                        <input type="radio" name="breathing_issue" value="1" id="breathing_issue-yes" {% if data.breathing_issue == 1 %}checked{% endif %}><label for="breathing_issue-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="alcohol_consumption">Consumo de álcool?</label></td>
+                    <td>
+                        <input type="radio" name="alcohol_consumption" value="0" id="alcohol_consumption-no" {% if data.alcohol_consumption == 0 %}checked{% endif %} required><label for="alcohol_consumption-no">Não</label>
+                        <input type="radio" name="alcohol_consumption" value="1" id="alcohol_consumption-yes" {% if data.alcohol_consumption == 1 %}checked{% endif %}><label for="alcohol_consumption-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="throat_discomfort">Desconforto na garganta?</label></td>
+                    <td>
+                        <input type="radio" name="throat_discomfort" value="0" id="throat_discomfort-no" {% if data.throat_discomfort == 0 %}checked{% endif %} required><label for="throat_discomfort-no">Não</label>
+                        <input type="radio" name="throat_discomfort" value="1" id="throat_discomfort-yes" {% if data.throat_discomfort == 1 %}checked{% endif %}><label for="throat_discomfort-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="oxygen_saturation">Saturação de oxigênio:</label></td>
+                    <td><input type="number" name="oxygen_saturation" id="oxygen_saturation" value="{{ data.oxygen_saturation }}" required></td>
+                </tr>
+            </table>
+            <button type="submit">Salvar</button>
+        </form>
+        <a href="/" class="back-btn">Voltar</a>
+    </div>
 </body>
 </html>

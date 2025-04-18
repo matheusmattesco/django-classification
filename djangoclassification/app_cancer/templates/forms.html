@@ -1,95 +1,207 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Previsão</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .form-container {
+            width: 60%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 16px;
+            color: #555;
+        }
+
+        input[type="number"], input[type="radio"] {
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+            font-size: 16px;
+            color: #333;
+            text-decoration: none;
+            padding: 10px;
+            background-color: #ccc;
+            border-radius: 4px;
+        }
+
+        .back-btn:hover {
+            background-color: #bbb;
+        }
+    </style>
 </head>
 <body>
     <h2>Predição de Câncer de Pulmão</h2>
-    <form method="post">
-        <table>
-            <tr>
-                <td><label for="gender">Gênero (0=F, 1=M):</label></td>
-                <td><input type="number" name="gender" id="gender" min="0" max="1"></td>
-            </tr>
-            <tr>
-                <td><label for="age">Idade:</label></td>
-                <td><input type="number" name="age" id="age"></td>
-            </tr>
-            <tr>
-                <td><label for="smoking">Fuma? (0=Não, 1=Sim):</label></td>
-                <td><input type="number" name="smoking" id="smoking" min="0" max="1"></td>
-            </tr>
-            <tr>
-                <td><label for="finger_discoloration">Descoloração dos dedos? (0=Não, 1=Sim):</label></td>
-                <td><input type="number" name="finger_discoloration" id="finger_discoloration" min="0" max="1"></td>
-            </tr>
-            <tr>
-                <td><label for="mental_stress">Estresse mental? (0=Não, 1=Sim):</label></td>
-                <td><input type="number" name="mental_stress" id="mental_stress" min="0" max="1"></td>
-            </tr>
-            <tr>
-                <td><label for="exposure_to_pollution">Exposição à poluição? (0=Não, 1=Sim):</label></td>
-                <td><input type="number" name="exposure_to_pollution" id="exposure_to_pollution" min="0" max="1"></td>
-            </tr>
-            <tr>
-                <td><label for="long_term_illness">Doença de longo prazo? (0=Não, 1=Sim):</label></td>
-                <td><input type="number" name="long_term_illness" id="long_term_illness" min="0" max="1"></td>
-            </tr>
-            <tr>
-                <td><label for="energy_level">Nível de energia baixo? (0 a 100):</label></td>
-                <td><input type="number" name="energy_level" id="energy_level"></td>
-            </tr>
-            <tr>
-                <td><label for="immune_weakness">Fraqueza imunológica? (0=Não, 1=Sim):</label></td>
-                <td><input type="number" name="immune_weakness" id="immune_weakness" min="0" max="1"></td>
-            </tr>
-            <tr>
-                <td><label for="breathing_issue">Dificuldade para respirar? (0=Não, 1=Sim):</label></td>
-                <td><input type="number" name="breathing_issue" id="breathing_issue" min="0" max="1"></td>
-            </tr>
-            <tr>
-                <td><label for="alcohol_consumption">Consumo de álcool? (0=Não, 1=Sim):</label></td>
-                <td><input type="number" name="alcohol_consumption" id="alcohol_consumption" min="0" max="1"></td>
-            </tr>
-            <tr>
-                <td><label for="throat_discomfort">Desconforto na garganta? (0=Não, 1=Sim):</label></td>
-                <td><input type="number" name="throat_discomfort" id="throat_discomfort" min="0" max="1"></td>
-            </tr>
-            <tr>
-                <td><label for="oxygen_saturation">Saturação de oxigênio baixa? (0 a 100):</label></td>
-                <td><input type="number" name="oxygen_saturation" id="oxygen_saturation"></td>
-            </tr>
-            <tr>
-                <td><label for="chest_tightness">Aperto no peito? (0=Não, 1=Sim):</label></td>
-                <td><input type="number" name="chest_tightness" id="chest_tightness" min="0" max="1"></td>
-            </tr>
-            <tr>
-                <td><label for="family_history">Histórico familiar de câncer? (0=Não, 1=Sim):</label></td>
-                <td><input type="number" name="family_history" id="family_history" min="0" max="1"></td>
-            </tr>
-            <tr>
-                <td><label for="smoking_family_history">Histórico familiar de tabagismo? (0=Não, 1=Sim):</label></td>
-                <td><input type="number" name="smoking_family_history" id="smoking_family_history" min="0" max="1"></td>
-            </tr>
-            <tr>
-                <td><label for="stress_immune">Estresse imunológico? (0=Não, 1=Sim):</label></td>
-                <td><input type="number" name="stress_immune" id="stress_immune" min="0" max="1"></td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align: center;">
-                    <button type="submit">Verificar</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-    
-    <button onclick="window.location.href = '{% url 'list' %}'">Voltar</button>
-
-    {% if resultado %}
-        <h2>Resultado: {{ resultado }}</h2>
-    {% endif %}
-
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td><label for="gender">Gênero:</label></td>
+                    <td>
+                        <input type="radio" name="gender" value="0" id="gender-f" required><label for="gender-f">Feminino</label>
+                        <input type="radio" name="gender" value="1" id="gender-m"><label for="gender-m">Masculino</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="age">Idade:</label></td>
+                    <td><input type="number" name="age" id="age" required></td>
+                </tr>
+                <tr>
+                    <td><label for="smoking">Fuma?</label></td>
+                    <td>
+                        <input type="radio" name="smoking" value="0" id="smoking-no" required><label for="smoking-no">Não</label>
+                        <input type="radio" name="smoking" value="1" id="smoking-yes"><label for="smoking-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="finger_discoloration">Descoloração dos dedos?</label></td>
+                    <td>
+                        <input type="radio" name="finger_discoloration" value="0" id="finger_discoloration-no" required><label for="finger_discoloration-no">Não</label>
+                        <input type="radio" name="finger_discoloration" value="1" id="finger_discoloration-yes"><label for="finger_discoloration-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="mental_stress">Estresse mental?</label></td>
+                    <td>
+                        <input type="radio" name="mental_stress" value="0" id="mental_stress-no" required><label for="mental_stress-no">Não</label>
+                        <input type="radio" name="mental_stress" value="1" id="mental_stress-yes"><label for="mental_stress-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="exposure_to_pollution">Exposição à poluição?</label></td>
+                    <td>
+                        <input type="radio" name="exposure_to_pollution" value="0" id="exposure_to_pollution-no" required><label for="exposure_to_pollution-no">Não</label>
+                        <input type="radio" name="exposure_to_pollution" value="1" id="exposure_to_pollution-yes"><label for="exposure_to_pollution-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="long_term_illness">Doença de longo prazo?</label></td>
+                    <td>
+                        <input type="radio" name="long_term_illness" value="0" id="long_term_illness-no" required><label for="long_term_illness-no">Não</label>
+                        <input type="radio" name="long_term_illness" value="1" id="long_term_illness-yes"><label for="long_term_illness-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="energy_level">Nível de energia baixo (0 a 100):</label></td>
+                    <td><input type="number" name="energy_level" id="energy_level" required></td>
+                </tr>
+                <tr>
+                    <td><label for="immune_weakness">Fraqueza imunológica?</label></td>
+                    <td>
+                        <input type="radio" name="immune_weakness" value="0" id="immune_weakness-no" required><label for="immune_weakness-no">Não</label>
+                        <input type="radio" name="immune_weakness" value="1" id="immune_weakness-yes"><label for="immune_weakness-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="breathing_issue">Dificuldade para respirar?</label></td>
+                    <td>
+                        <input type="radio" name="breathing_issue" value="0" id="breathing_issue-no" required><label for="breathing_issue-no">Não</label>
+                        <input type="radio" name="breathing_issue" value="1" id="breathing_issue-yes"><label for="breathing_issue-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="alcohol_consumption">Consumo de álcool?</label></td>
+                    <td>
+                        <input type="radio" name="alcohol_consumption" value="0" id="alcohol_consumption-no" required><label for="alcohol_consumption-no">Não</label>
+                        <input type="radio" name="alcohol_consumption" value="1" id="alcohol_consumption-yes"><label for="alcohol_consumption-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="throat_discomfort">Desconforto na garganta?</label></td>
+                    <td>
+                        <input type="radio" name="throat_discomfort" value="0" id="throat_discomfort-no" required><label for="throat_discomfort-no">Não</label>
+                        <input type="radio" name="throat_discomfort" value="1" id="throat_discomfort-yes"><label for="throat_discomfort-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="oxygen_saturation">Saturação de oxigênio baixa (0 a 100):</label></td>
+                    <td><input type="number" name="oxygen_saturation" id="oxygen_saturation" required></td>
+                </tr>
+                <tr>
+                    <td><label for="chest_tightness">Aperto no peito?</label></td>
+                    <td>
+                        <input type="radio" name="chest_tightness" value="0" id="chest_tightness-no" required><label for="chest_tightness-no">Não</label>
+                        <input type="radio" name="chest_tightness" value="1" id="chest_tightness-yes"><label for="chest_tightness-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="family_history">Histórico familiar de câncer?</label></td>
+                    <td>
+                        <input type="radio" name="family_history" value="0" id="family_history-no" required><label for="family_history-no">Não</label>
+                        <input type="radio" name="family_history" value="1" id="family_history-yes"><label for="family_history-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="smoking_family_history">Histórico familiar de tabagismo?</label></td>
+                    <td>
+                        <input type="radio" name="smoking_family_history" value="0" id="smoking_family_history-no" required><label for="smoking_family_history-no">Não</label>
+                        <input type="radio" name="smoking_family_history" value="1" id="smoking_family_history-yes"><label for="smoking_family_history-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="stress_immune">Estresse imunológico?</label></td>
+                    <td>
+                        <input type="radio" name="stress_immune" value="0" id="stress_immune-no" required><label for="stress_immune-no">Não</label>
+                        <input type="radio" name="stress_immune" value="1" id="stress_immune-yes"><label for="stress_immune-yes">Sim</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <button type="submit">Verificar</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <a href="/" class="back-btn">Voltar</a>
+    </div>
 </body>
 </html>

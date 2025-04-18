@@ -20,5 +20,8 @@ class LungCancer(models.Model):
     stress_immune = models.IntegerField(choices=[(0, 'Não'), (1, 'Sim')], null=True, blank=True)
     resultado = models.CharField(max_length=20, null=True, blank=True)
             
-    def __str__(self):
-        return f'Paciente {self.id} - Idade: {self.age} - Gênero: {self.gender}'
+def __str__(self):
+    gender = dict(self.GENDER_CHOICES).get(self.gender, 'Indefinido')
+    smoking = dict(self.SMOKING_CHOICES).get(self.smoking, 'Indefinido')
+    return f'Paciente {self.id} - Idade: {self.age} - Gênero: {gender} - Fumante: {smoking}'
+

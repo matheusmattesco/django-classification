@@ -1,85 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Previsor de Câncer de Pulmão</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-top: 40px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .pagination {
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            margin: 0 5px;
+            text-decoration: none;
+            color: blue;
+        }
+
+        .pagination .current {
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 8px 12px;
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-button {
+            background-color: #FF4B4B;
+        }
+
+        .delete-button:hover {
+            background-color: #D94343;
+        }
+    </style>
 </head>
 <body>
+
     <h2>Listagem de Dados</h2>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Idade</th>
-            <th>Gênero</th>
-            <th>Fumante</th>
-            <th>Descoloração dos dedos</th>
-            <th>Estresse mental</th>
-            <th>Exposição à poluição</th>
-            <th>Doença de longo prazo</th>
-            <th>Nível de energia</th>
-            <th>Imunidade fraca</th>
-            <th>Problema respiratório</th>
-            <th>Consumo de álcool</th>
-            <th>Desconforto na garganta</th>
-            <th>Saturação de oxigênio</th>
-            <th>Aperto no peito</th>
-            <th>Histórico familiar</th>
-            <th>Histórico de fumo na família</th>
-            <th>Estresse + imunidade fraca</th>
-            <th>Resultado</th>
-            <th>Editar</th>
-        </tr>
-    
-        {% for data in page_obj %}
-        <tr>
-            <td>{{ data.id }}</td>
-            <td>{{ data.age }}</td>
-            <td>{{ data.get_gender_display }}</td>
-            <td>{{ data.get_smoking_display }}</td>
-            <td>{{ data.get_finger_discoloration_display }}</td>
-            <td>{{ data.get_mental_stress_display }}</td>
-            <td>{{ data.get_exposure_to_pollution_display }}</td>
-            <td>{{ data.get_long_term_illness_display }}</td>
-            <td>{{ data.energy_level }}</td>
-            <td>{{ data.get_immune_weakness_display }}</td>
-            <td>{{ data.get_breathing_issue_display }}</td>
-            <td>{{ data.get_alcohol_consumption_display }}</td>
-            <td>{{ data.get_throat_discomfort_display }}</td>
-            <td>{{ data.oxygen_saturation }}</td>
-            <td>{{ data.get_chest_tightness_display }}</td>
-            <td>{{ data.get_family_history_display }}</td>
-            <td>{{ data.get_smoking_family_history_display }}</td>
-            <td>{{ data.get_stress_immune_display }}</td>
-            <td>{{ data.resultado }}</td>
-            <td>
-                <button onclick="window.location.href = '/edit/{{ data.id }}/'">Editar</button>
-            </td>
-        </tr>
-        {% endfor %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Idade</th>
+                <th>Gênero</th>
+                <th>Fumante</th>
+                <th>Descoloração dos dedos</th>
+                <th>Estresse mental</th>
+                <th>Exposição à poluição</th>
+                <th>Doença de longo prazo</th>
+                <th>Nível de energia</th>
+                <th>Imunidade fraca</th>
+                <th>Problema respiratório</th>
+                <th>Consumo de álcool</th>
+                <th>Desconforto na garganta</th>
+                <th>Saturação de oxigênio</th>
+                <th>Aperto no peito</th>
+                <th>Histórico familiar</th>
+                <th>Histórico de fumo na família</th>
+                <th>Estresse + imunidade fraca</th>
+                <th>Resultado</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in page_obj %}
+            <tr>
+                <td>{{ data.id }}</td>
+                <td>{{ data.age }}</td>
+                <td>{{ data.get_gender_display }}</td>
+                <td>{{ data.get_smoking_display }}</td>
+                <td>{{ data.get_finger_discoloration_display }}</td>
+                <td>{{ data.get_mental_stress_display }}</td>
+                <td>{{ data.get_exposure_to_pollution_display }}</td>
+                <td>{{ data.get_long_term_illness_display }}</td>
+                <td>{{ data.energy_level }}</td>
+                <td>{{ data.get_immune_weakness_display }}</td>
+                <td>{{ data.get_breathing_issue_display }}</td>
+                <td>{{ data.get_alcohol_consumption_display }}</td>
+                <td>{{ data.get_throat_discomfort_display }}</td>
+                <td>{{ data.oxygen_saturation }}</td>
+                <td>{{ data.get_chest_tightness_display }}</td>
+                <td>{{ data.get_family_history_display }}</td>
+                <td>{{ data.get_smoking_family_history_display }}</td>
+                <td>{{ data.get_stress_immune_display }}</td>
+                <td>{{ data.resultado }}</td>
+                <td>
+                    <form method="get" action="/edit/{{ data.id }}/">
+                        {% csrf_token %}
+                        <button type="submit">Editar</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="/delete/{{ data.id }}/">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-button">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="20">Nenhum dado encontrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 
-<div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; Primeiro</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+            {% endif %}
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            <span class="current">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Próxima</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+            {% endif %}
         </span>
+    </div>
 
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
+    <button onclick="window.location.href = '{% url 'register' %}'">Novo Registro</button>
 
-<button onclick="window.location.href = '{% url 'register' %}'">Novo Registro</button>
+    <h2>Dashboard</h2>
 
-<h2>Dashboard</h2>
+    <img src="{% url 'generate_graph' %}" alt="Gráfico de Distribuição das Idades" />
 
 </body>
 </html>

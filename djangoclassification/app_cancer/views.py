@@ -8,13 +8,8 @@ from .models import LungCancer
 import app_cancer.models as ControlModels
 import os
 import pickle
-import matplotlib.pyplot as plt
-import seaborn as sns
-from io import BytesIO
-from django.http import HttpResponse
 from django.shortcuts import render
 from .models import LungCancer
-
 
 def load_model():
     path = os.path.join(settings.BASE_DIR, 'ml', 'model.pkl')
@@ -63,7 +58,28 @@ class LungCancerRegister(View):
                     resultado=resultado
                 )
             
-        return redirect('/list')
+        return render(request, '../templates/forms.html', {'resultado': resultado})
+
+    def _extract_form_data(self, request):
+        return [
+            request.POST.get('gender'),
+            request.POST.get('age'),
+            request.POST.get('smoking'),
+            request.POST.get('finger_discoloration'),
+            request.POST.get('mental_stress'),
+            request.POST.get('exposure_to_pollution'),
+            request.POST.get('long_term_illness'),
+            request.POST.get('energy_level'),
+            request.POST.get('immune_weakness'),
+             request.POST.get('breathing_issue'),
+            request.POST.get('alcohol_consumption'),
+            request.POST.get('throat_discomfort'),
+            request.POST.get('oxygen_saturation'),
+            request.POST.get('chest_tightness'),
+            request.POST.get('family_history'),
+            request.POST.get('smoking_family_history'),
+            request.POST.get('stress_immune')
+        ]
     
 
 class LungCancerEdit(View):
@@ -104,9 +120,9 @@ class LungCancerEdit(View):
 
         lung_cancer_instance = ControlModels.LungCancer.objects.get(id=request.POST.get('id'))
 
+        lung_cancer_instance.gender = data_array[0]
         lung_cancer_instance.age = data_array[1]
-        lung_cancer_instance.gender = data_array[2]
-        lung_cancer_instance.smoking = data_array[0]
+        lung_cancer_instance.smoking = data_array[2]
         lung_cancer_instance.finger_discoloration = data_array[3]
         lung_cancer_instance.mental_stress = data_array[4]
         lung_cancer_instance.exposure_to_pollution = data_array[5]
@@ -123,28 +139,14 @@ class LungCancerEdit(View):
         lung_cancer_instance.stress_immune = data_array[16]
         lung_cancer_instance.resultado = resultado
 
-        lung_cancer_instance.save() 
+        lung_cancer_instance.save()
 
-        return redirect('/list')
+        return render(request, 'edit.html', {'data': lung_cancer_instance, 'resultado': resultado})
+
 
 class LungCancerDelete(View):
     def post(self, request, id):
         data = LungCancer.objects.get(id=id)
         data.delete() 
-        return redirect('list') 
-    
-def generate_graph(request):
-    dataset = LungCancer.objects.all()
-    ages = [record.age for record in dataset]
 
-    plt.figure(figsize=(10, 6))
-    sns.histplot(ages, bins=15, kde=True, color='blue')
-    plt.title("Distribuição das Idades no Dataset de Câncer de Pulmão")
-    plt.xlabel("Idade")
-    plt.ylabel("Frequência")  
-
-    buffer = BytesIO()
-    plt.savefig(buffer, format='png')
-    buffer.seek(0)
-
-    return HttpResponse(buffer, content_type='image/png')
+        return redirect('list')

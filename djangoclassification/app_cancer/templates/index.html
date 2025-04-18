@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -67,6 +69,29 @@
 
         .delete-button:hover {
             background-color: #D94343;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, auto);
+            gap: 20px;
+        }
+        .grafico {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .grafico img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .grafico h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -162,9 +187,41 @@
 
     <button onclick="window.location.href = '{% url 'register' %}'">Novo Registro</button>
 
-    <h2>Dashboard</h2>
+    <h2>Dashboard - Câncer de Pulmão</h2>
 
-    <img src="{% url 'generate_graph' %}" alt="Gráfico de Distribuição das Idades" />
+    <div class="dashboard">
+        <div class="grafico">
+            <h3>Distribuição dos Resultados</h3>
+        </div>
+        <div class="grafico">
+            <h3>Frequência por Sexo</h3>
+            <!--<img src="/graficos/genero/" alt="Gráfico Barra Gênero">-->
+        </div>
+        <div class="grafico">
+            <h3>Fatores de Risco Frequentes</h3>
+            <!--<img src="/graficos/fatores_risco/" alt="Gráfico Fatores de Risco">-->
+        </div>
+        <div class="grafico">
+            <h3>Idade x Resultado</h3>
+            <!--<img src="/graficos/idade_resultado/" alt="Boxplot Idade">-->
+        </div>
+        <div class="grafico">
+            <h3>Correlação entre Fatores</h3>
+            <!--<img src="/graficos/correlacao/" alt="Heatmap Correlação">-->
+        </div>
+        <div class="grafico">
+            <h3>Distribuição da Idade</h3>
+            <!--<img src="/graficos/distribuicao_idade/" alt="Histograma Idade">-->
+        </div>
+        <div class="grafico">
+            <h3>Saturação vs Idade</h3>
+            <!--<img src="/graficos/oxigenio_idade/" alt="Scatter Saturação">-->
+        </div>
+        <div class="grafico">
+            <h3>Perfil Médio (Radar)</h3>
+            <!--<img src="/graficos/radar/" alt="Radar Gráfico Perfil">-->
+        </div>
+    </div>
 
 </body>
 </html>

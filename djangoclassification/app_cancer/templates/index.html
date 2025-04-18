@@ -71,27 +71,29 @@
             background-color: #D94343;
         }
 
-        .dashboard {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(2, auto);
+        .grafico-container {
+            display: flex;
+            justify-content: space-between;
             gap: 20px;
+            flex-wrap: wrap;  /* Isso vai garantir que, se a tela for pequena, os gráficos se movam para a linha de baixo */
         }
+
         .grafico {
-            background-color: #fff;
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 48%;  /* Ajusta o tamanho de cada gráfico, dois gráficos vão ocupar 100% da largura */
+            min-width: 300px;  /* Para garantir que os gráficos não fiquem muito pequenos */
             text-align: center;
         }
-        .grafico img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
+
+        img {
+            width: 100%;  /* Faz os gráficos se ajustarem ao tamanho do contêiner */
+            border-radius: 8px;  /* Para dar um toque mais estiloso */
         }
-        .grafico h3 {
-            font-size: 16px;
-            margin-bottom: 10px;
+
+        /* Resposta para telas pequenas */
+        @media (max-width: 768px) {
+            .grafico {
+                width: 100%;  /* Em telas pequenas, cada gráfico vai ocupar toda a largura */
+            }
         }
     </style>
 </head>
@@ -189,39 +191,26 @@
 
     <h2>Dashboard - Câncer de Pulmão</h2>
 
-    <div class="dashboard">
+    <div class="grafico-container">
         <div class="grafico">
-            <h3>Distribuição dos Resultados</h3>
+            <h3>Porcentagem dos resultados</h3>
+            <img src="{% url 'grafico_resultados' %}" alt="Proporção dos Resultados">
         </div>
+
         <div class="grafico">
-            <h3>Frequência por Sexo</h3>
-            <!--<img src="/graficos/genero/" alt="Gráfico Barra Gênero">-->
+            <h3>Comparação de Câncer entre fumantes e não fumantes</h3>
+            <img src="{% url 'grafico_fumantes_cancer' %}" alt="grafico_fuamntes_cancer">
         </div>
+
         <div class="grafico">
-            <h3>Fatores de Risco Frequentes</h3>
-            <!--<img src="/graficos/fatores_risco/" alt="Gráfico Fatores de Risco">-->
+            <h3>Comparação de pacientes com Câncer por Gênero</h3>
+            <img src="{% url 'grafico_casos_por_genero' %}" alt="Gráfico por Gênero">
         </div>
+
         <div class="grafico">
-            <h3>Idade x Resultado</h3>
-            <!--<img src="/graficos/idade_resultado/" alt="Boxplot Idade">-->
-        </div>
-        <div class="grafico">
-            <h3>Correlação entre Fatores</h3>
-            <!--<img src="/graficos/correlacao/" alt="Heatmap Correlação">-->
-        </div>
-        <div class="grafico">
-            <h3>Distribuição da Idade</h3>
-            <!--<img src="/graficos/distribuicao_idade/" alt="Histograma Idade">-->
-        </div>
-        <div class="grafico">
-            <h3>Saturação vs Idade</h3>
-            <!--<img src="/graficos/oxigenio_idade/" alt="Scatter Saturação">-->
-        </div>
-        <div class="grafico">
-            <h3>Perfil Médio (Radar)</h3>
-            <!--<img src="/graficos/radar/" alt="Radar Gráfico Perfil">-->
+            <h3>Histograma de pacientes com Câncer</h3>
+            <img src="{% url 'grafico_idade' %}" alt="grafico_idade">
         </div>
     </div>
-
 </body>
 </html>

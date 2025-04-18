@@ -10,6 +10,15 @@ import os
 import pickle
 from django.shortcuts import render
 from .models import LungCancer
+from django.http import HttpResponse
+from io import BytesIO
+import matplotlib.pyplot as plt
+from .models import LungCancer
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+
+matplotlib.use('Agg') 
 
 def load_model():
     path = os.path.join(settings.BASE_DIR, 'ml', 'model.pkl')
@@ -150,3 +159,97 @@ class LungCancerDelete(View):
         data.delete() 
 
         return redirect('list')
+    
+def grafico_resultados(request):
+    dataset = LungCancer.objects.all()
+
+    resultados = {}
+    for record in dataset:
+        resultado = record.resultado 
+        resultados[resultado] = resultados.get(resultado, 0) + 1
+
+    labels = list(resultados.keys())
+    sizes = list(resultados.values())
+
+    plt.figure(figsize=(8, 8))
+    plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
+    
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    plt.close()
+
+    return HttpResponse(buffer, content_type='image/png')
+
+def grafico_fumantes_cancer(request):
+    pacientes = LungCancer.objects.filter(resultado="Com câncer")
+
+    contagem = {'Fumantes': 0, 'Não Fumantes': 0}
+    for paciente in pacientes:
+        if paciente.smoking == 1:
+            contagem['Fumantes'] += 1
+        elif paciente.smoking == 0:
+            contagem['Não Fumantes'] += 1
+
+    labels = list(contagem.keys())
+    valores = list(contagem.values())
+
+    plt.figure(figsize=(8, 8))
+    plt.pie(valores, labels=labels, autopct='%1.1f%%', startangle=140)
+
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    plt.close()
+
+    return HttpResponse(buffer, content_type='image/png')
+
+def grafico_casos_por_genero(request):
+    dataset = LungCancer.objects.filter(resultado="Com câncer")
+
+    resultados = {}
+    for record in dataset:
+        genero = record.get_gender_display()  
+        resultados[genero] = resultados.get(genero, 0) + 1
+
+    labels = list(resultados.keys())
+    sizes = list(resultados.values())
+
+    cores = []
+    for genero in labels:
+        if genero == 'Masculino':
+            cores.append('RoyalBlue')  
+        elif genero == 'Feminino':
+            cores.append('hotpink')    
+        else:
+            cores.append('gray') 
+
+    plt.figure(figsize=(8, 6))
+    plt.bar(labels, sizes, color=cores)
+    plt.xlabel('Gênero')
+    plt.ylabel('Quantidade de Registros')
+
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    plt.close()
+
+    return HttpResponse(buffer, content_type='image/png')
+
+def grafico_idade(request):
+    dataset = LungCancer.objects.filter(resultado="Com câncer")
+
+    idades = [record.age for record in dataset if record.age is not None]
+
+    plt.figure(figsize=(8, 6))
+    plt.hist(idades, bins=10, color='mediumslateblue', edgecolor='black')
+    plt.xlabel('Idade')
+    plt.ylabel('Número de Pacientes')
+
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    plt.close()
+
+    return HttpResponse(buffer, content_type='image/png')
+
